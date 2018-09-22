@@ -11,5 +11,5 @@ do
 	username=$(printf "user_%02x" $n)
 	password=$(apg -n 1 -m 8 -M SC -E ';' -c /dev/urandom)
 	echo "$n;$username;$password"
-#	useradd $username -m -p `mkpasswd $password` -s /bin/bash
+	useradd $username -m -p `mkpasswd $password` -s /bin/bash
 done
