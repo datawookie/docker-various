@@ -1,3 +1,7 @@
+# c.NotebookApp.allow_origin = '*'
+# c.NotebookApp.ip = '0.0.0.0'
+
+
 # Enable this to get very detailed logging of everything that happens in a
 # notebook. The logs are dumped to the terminal, so you access them via
 # docker logs.
