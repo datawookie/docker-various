@@ -17,6 +17,7 @@ RUN apt-get update && \
         build-essential \
         curl \
         git \
+        htop \
         locate \
         make \
         openssh-client \

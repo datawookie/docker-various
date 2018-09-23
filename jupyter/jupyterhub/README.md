@@ -33,7 +33,7 @@ The default login credentials are `jupyter` for both Username and Password.
 
 ## Multiple Users
 
-1. Create a volume to persist the users' files.
+Create a volume to persist the users' files.
 
 ```
 $ docker volume create jupyter-users
@@ -41,21 +41,21 @@ $ docker volume ls
 $ docker volume inspect jupyter-users
 ```
 
-2. Run the image and mount the volume.
+Run the image and mount the volume.
 
 ```
 $ docker run --rm --name jupyter -v jupyter-users:/home/ -d -p 80:8000 jupyterhub:latest
 ```
 
-3. Launch a `bash` shell in the container and run the `generate-users` script.
+Launch a `bash` shell in the container and run the `generate-users` script.
 
 ```
 # generate-users 5
 ```
 
-4. Access the files created by users' in the folder listed by `docker volume inspect`. Copy this content elsewhere for posterity!
+Access the files created by users' in the folder listed by `docker volume inspect`. Copy this content elsewhere for posterity!
 
-5. When you are done you can remove the volume.
+When you are done you can remove the volume.
 
 ```
 $ docker volume rm jupyter-users
