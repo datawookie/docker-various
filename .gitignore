@@ -2,4 +2,7 @@
 .local/
 .python_history
 .Rhistory
-
+*.swp
+.ipynb_checkpoints/
+.ipython/
+.jupyter/
