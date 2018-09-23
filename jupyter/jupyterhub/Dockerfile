@@ -65,15 +65,8 @@ RUN pip install jupyter==1.0.0 \
 
 # Bleeding edge packages from GitHub.
 #
-#RUN pip install \
-#                git+git://github.com/arviz-devs/arviz.git@1962f62d047af48eb170ff93041701b4614af328
-
-#
-# Generate new user accounts.
-#
-# This is insecure and you should delete this user once everything is running.
-#
-RUN useradd jupyter -m -p `mkpasswd jupyter` -s /bin/bash
+RUN pip install \
+                git+git://github.com/arviz-devs/arviz.git@1962f62d047af48eb170ff93041701b4614af328
 
 # JupyterHub configuration file.
 #
@@ -95,9 +88,16 @@ ADD jupyterhub_config.py /srv/jupyterhub/
 #
 ADD jupyter_notebook_config.py /etc/jupyter/
 
-ADD generate-users.sh /usr/local/bin/
-
+# User accounts.
 #
+# Default account (insecure; delete this user once everything is running).
+#
+RUN useradd jupyter -m -p `mkpasswd jupyter` -s /bin/bash
+#
+# Script to create other accounts.
+#
+ADD generate-users /usr/local/bin/
+
 # Set up SSL. (Uncomment the three lines below).
 #
 # ADD privkey.pem /etc/ssl/certs/privkey.pem
