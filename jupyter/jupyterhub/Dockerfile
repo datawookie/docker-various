@@ -43,15 +43,15 @@ RUN apt-get update && \
 RUN pip install jupyter==1.0.0 \
                 corner==2.0.1 \
 		keras==2.0.6 \
-		lightgbm==2.0.6 \
-		matplotlib==3.0.0 \
+         	lightgbm==2.0.6 \
+        	matplotlib==3.0.0 \
 		nltk==3.2.4 \
 		numpy==1.15.1 \
 		# orange3==3.4.5 \
 		# orange3-associate==1.1.3 \
 		pandas==0.20.3 \
 		Pillow==4.2.1 \
-                pystan==2.18.0.0 \
+               pystan==2.18.0.0 \
 		pytesseract==0.1.7 \
 		scikit-learn==0.19.0 \
 		scipy==0.19.1 \
@@ -61,12 +61,12 @@ RUN pip install jupyter==1.0.0 \
 		tensorflow==1.3.0 \
 		theano==0.9.0 \
 		xgboost==0.6a2 \
-                findspark==1.3.0
+               findspark==1.3.0
 
 # Bleeding edge packages from GitHub.
 #
-RUN pip install \
-                git+git://github.com/arviz-devs/arviz.git@1962f62d047af48eb170ff93041701b4614af328
+#RUN pip install \
+#                git+git://github.com/arviz-devs/arviz.git@1962f62d047af48eb170ff93041701b4614af328
 
 #
 # Generate new user accounts.
