@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# If generation of passwords is slow (it probably will be on AWS!) then do the following:
+#
+# $ sudo apt install rng-tools
+# $ sudo rngd -r /dev/urandom -o /dev/random
+
 case $1 in
     ''|*[!0-9]*) echo "How many users do you want to generate?"; exit 1 ;;
 esac
