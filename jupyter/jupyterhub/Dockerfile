@@ -17,6 +17,7 @@ RUN apt-get update && \
         build-essential \
         curl \
         git \
+        graphviz \
         htop \
         locate \
         make \
@@ -51,7 +52,7 @@ RUN pip install \
         lightgbm==2.0.6 \
         matplotlib==3.0.0 \
         nltk==3.2.4 \
-        numpy==1.15.0 \
+        numpy==1.15.1 \
         openpyxl==2.5.8 \
         pandas==0.20.3 \
         Pillow==4.2.1 \
