@@ -50,7 +50,6 @@ RUN pip install \
         lightgbm==2.0.6 \
         matplotlib==3.0.0 \
         nltk==3.2.4 \
-        # numpy==1.14.5 \
         numpy==1.15.0 \
         openpyxl==2.5.8 \
         pandas==0.20.3 \
@@ -63,7 +62,6 @@ RUN pip install \
         seaborn \
         statsmodels==0.8.0 \
         tables==3.4.4 \
-        # tensorflow==1.10.1 \
         tensorflow==1.11.0 \
         theano==0.9.0 \
         xgboost==0.80 \
