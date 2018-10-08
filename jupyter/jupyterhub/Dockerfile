@@ -45,6 +45,7 @@ RUN pip install \
         bokeh==0.13.0 \
         corner==2.0.1 \
         findspark==1.3.0 \
+        graphviz==0.8.3 \
         jupyter==1.0.0 \
         keras==2.0.6 \
         lightgbm==2.0.6 \
