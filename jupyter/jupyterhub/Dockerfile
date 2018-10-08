@@ -42,6 +42,7 @@ RUN apt-get update && \
 # Install Python packages.
 #
 RUN pip install \
+        bokeh==0.13.0 \
         corner==2.0.1 \
         findspark==1.3.0 \
         jupyter==1.0.0 \
@@ -49,7 +50,9 @@ RUN pip install \
         lightgbm==2.0.6 \
         matplotlib==3.0.0 \
         nltk==3.2.4 \
-        numpy==1.14.5 \
+        # numpy==1.14.5 \
+        numpy==1.15.0 \
+        openpyxl==2.5.8 \
         pandas==0.20.3 \
         Pillow==4.2.1 \
         pystan==2.18.0.0 \
@@ -59,14 +62,18 @@ RUN pip install \
         Scrapy==1.4.0 \
         seaborn \
         statsmodels==0.8.0 \
-        tensorflow==1.10.1 \
+        tables==3.4.4 \
+        # tensorflow==1.10.1 \
+        tensorflow==1.11.0 \
         theano==0.9.0 \
-        xgboost==0.80
+        xgboost==0.80 \
+        xlrd==1.1.0
 
 # Bleeding edge packages from GitHub.
 #
 RUN pip install \
-        git+git://github.com/arviz-devs/arviz.git@1962f62d047af48eb170ff93041701b4614af328
+        git+git://github.com/arviz-devs/arviz.git@1962f62d047af48eb170ff93041701b4614af328 \
+        git+https://github.com/rasbt/watermark#egg=watermark
 
 # JupyterHub configuration file.
 #
