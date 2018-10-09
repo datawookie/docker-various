@@ -58,7 +58,7 @@ RUN pip install \
         Pillow==4.2.1 \
         pystan==2.18.0.0 \
         pytesseract==0.1.7 \
-        scikit-learn==0.19.0 \
+        scikit-learn==0.20.0 \
         scipy==1.1.0 \
         Scrapy==1.4.0 \
         seaborn \
