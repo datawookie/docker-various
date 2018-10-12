@@ -47,8 +47,9 @@ RUN pip install \
         corner==2.0.1 \
         findspark==1.3.0 \
         graphviz==0.8.3 \
+        ipywidgets==7.4.2 \
         jupyter==1.0.0 \
-        keras==2.0.6 \
+        # keras==2.0.6 \
         lightgbm==2.0.6 \
         matplotlib==3.0.0 \
         nltk==3.2.4 \
@@ -64,8 +65,8 @@ RUN pip install \
         seaborn \
         statsmodels==0.8.0 \
         tables==3.4.4 \
-        tensorflow==1.11.0 \
-        theano==0.9.0 \
+        # tensorflow==1.11.0 \
+        # theano==0.9.0 \
         xgboost==0.80 \
         xlrd==1.1.0
 
@@ -104,6 +105,23 @@ RUN useradd jupyter -m -p `mkpasswd jupyter` -s /bin/bash
 # Script to create other accounts.
 #
 ADD generate-users /usr/local/bin/
+
+# RUN jupyter nbextension install --system --symlink --debug
+
+# NbExtensions
+#
+# https://github.com/colin-svds/jupyterhub-nbextensions-docker/blob/master/DockerFile
+#
+# RUN pip install jupyter_contrib_nbextensions
+# RUN jupyter contrib nbextension install --user
+# RUN jupyter contrib nbextension install --symlink --system
+# 
+# RUN pip install jupyter_nbextensions_configurator jupyter_contrib_nbextensions
+# RUN jupyter contrib nbextension install --user
+# RUN jupyter nbextensions_configurator enable --user
+# RUN jupyter contrib nbextension install --system
+# RUN jupyter nbextensions_configurator enable --system
+
 
 # Set up SSL. (Uncomment the three lines below).
 #
