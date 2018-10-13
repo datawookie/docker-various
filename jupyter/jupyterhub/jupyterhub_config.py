@@ -1,5 +1,3 @@
-# Configuration file for jupyterhub.
-
 #------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
 #------------------------------------------------------------------------------
@@ -14,6 +12,16 @@
 
 ## Set the log level by value or name.
 #c.Application.log_level = 30
+
+# SSL ---------------------------------------------------------------------------------------------
+
+# You need to map port 443 (-p 443:443) when you launch a container!
+#
+# https://jupyterhub.readthedocs.io/en/latest/getting-started/security-basics.html.
+#
+# c.JupyterHub.port = 443
+# c.JupyterHub.ssl_cert = '/srv/jupyterhub/jupyterhub.crt'
+# c.JupyterHub.ssl_key = '/srv/jupyterhub/jupyterhub.key'
 
 #------------------------------------------------------------------------------
 # JupyterHub(Application) configuration
@@ -158,9 +166,6 @@
 ## File to write PID Useful for daemonizing jupyterhub.
 #c.JupyterHub.pid_file = ''
 
-## The public facing port of the proxy
-#c.JupyterHub.port = 443
-
 ## The ip for the proxy API handlers
 #c.JupyterHub.proxy_api_ip = '127.0.0.1'
 
@@ -213,16 +218,6 @@
 #  
 #  Should be a subclass of Spawner.
 #c.JupyterHub.spawner_class = 'jupyterhub.spawner.LocalProcessSpawner'
-
-## Path to SSL certificate file for the public facing interface of the proxy
-#  
-#  Use with ssl_key
-#c.JupyterHub.ssl_cert = '/etc/ssl/certs/fullchain.pem'
-
-## Path to SSL key file for the public facing interface of the proxy
-#  
-#  Use with ssl_cert
-#c.JupyterHub.ssl_key = '/etc/ssl/certs/privkey.pem'
 
 ## Host to send statsd metrics to
 #c.JupyterHub.statsd_host = ''

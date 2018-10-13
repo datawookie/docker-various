@@ -122,14 +122,10 @@ ADD generate-users /usr/local/bin/
 # RUN jupyter contrib nbextension install --system
 # RUN jupyter nbextensions_configurator enable --system
 
+# SSL ---------------------------------------------------------------------------------------------
 
-# Set up SSL. (Uncomment the three lines below).
+# Self-signed certificate.
 #
-# ADD privkey.pem /etc/ssl/certs/privkey.pem
-# ADD fullchain.pem /etc/ssl/certs/fullchain.pem
-# RUN chmod 0600 /etc/ssl/certs/privkey.pem /etc/ssl/certs/fullchain.pem
-#
-# - Currently using a self-signed certificate, but ultimately should use letsencrypt.
 # - In jupyterhub_config.py uncomment c.JupyterHub.ssl_cert and c.JupyterHub.ssl_key.
 # - Run with port mapping 443:8000.
 #
@@ -138,8 +134,12 @@ ADD generate-users /usr/local/bin/
 # that the connection is not secure, but this just means that the certificate can't be
 # validated. Communication is still happening via HTTPS.
 #
-# RUN apt-get install openssl
-# RUN mkdir /etc/certs/
-# RUN openssl req -x509 -nodes -days 730 -newkey rsa:2048 \
-#             -subj "/C=US/ST=Washington/L=Seattle/O=Example Corporation/CN=example.com" \
-#             -keyout /etc/certs/ssl.key -out /etc/certs/ssl.crt
+# RUN openssl req -batch -x509 -nodes -days 365 -newkey rsa:1024 \
+#         -keyout jupyterhub.key -out jupyterhub.crt && \
+#     chmod 600 jupyterhub.crt jupyterhub.key
+
+# Letsencrypt.
+#
+# ADD privkey.pem /etc/ssl/certs/privkey.pem
+# ADD fullchain.pem /etc/ssl/certs/fullchain.pem
+# RUN chmod 0600 /etc/ssl/certs/privkey.pem /etc/ssl/certs/fullchain.pem
