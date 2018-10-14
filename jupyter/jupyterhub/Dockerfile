@@ -1,15 +1,7 @@
-# =============================================================================
-# JUPYTER NOTEBOOK DOCKER IMAGE
-# =============================================================================
-#
-# -----------------------------------------------------------------------------
-#
 FROM jupyterhub/jupyterhub:0.9.3
 MAINTAINER Andrew Collier <andrew@exegetic.biz>
-#
+
 # Install system software.
-#
-# - build-essential: So that we can compile xgboost from source.
 #
 RUN apt-get update && \
     apt-get install -y \
@@ -76,12 +68,10 @@ RUN pip install \
         git+git://github.com/arviz-devs/arviz.git@1962f62d047af48eb170ff93041701b4614af328 \
         git+https://github.com/rasbt/watermark#egg=watermark
 
-# JupyterHub configuration file.
-#
+# CONFIGURATION ----------------------------------------------------------------------------------
+
 ADD jupyterhub_config.py /srv/jupyterhub/
 
-# Jupyter configuration file.
-#
 # Location of this file:
 #
 # - $ jupyter --paths
@@ -90,11 +80,9 @@ ADD jupyterhub_config.py /srv/jupyterhub/
 # Global location: /etc/jupyter/
 # Local location:  ~/.jupyter/
 #
-# Custom settings:
-#
-# - Automatically make copy of notebook as a plain .py script (enables version control) - search for "post_save".
-#
 ADD jupyter_notebook_config.py /etc/jupyter/
+
+# -------------------------------------------------------------------------------------------------
 
 # User accounts.
 #
@@ -106,21 +94,51 @@ RUN useradd jupyter -m -p `mkpasswd jupyter` -s /bin/bash
 #
 ADD generate-users /usr/local/bin/
 
+# EXTENSIONS --------------------------------------------------------------------------------------
+
+# https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator
+# https://github.com/ipython-contrib/jupyter_contrib_nbextensions
+# https://gist.github.com/vlandeiro/0775ea28b2839dc7c8032b6a76c2dadb
+# https://github.com/ur-whitelab/docker-images/blob/master/python/jupyter-nbextensions/Dockerfile
+#
+# THIS HAS MANUAL INSTALL STEPS FROM jupyterhub image.
+#
+# https://github.com/colin-svds/jupyterhub-nbextensions-docker/blob/master/DockerFile
+
 # RUN jupyter nbextension install --system --symlink --debug
 
 # NbExtensions
 #
 # https://github.com/colin-svds/jupyterhub-nbextensions-docker/blob/master/DockerFile
 #
-# RUN pip install jupyter_contrib_nbextensions
 # RUN jupyter contrib nbextension install --user
 # RUN jupyter contrib nbextension install --symlink --system
 # 
 # RUN pip install jupyter_nbextensions_configurator jupyter_contrib_nbextensions
-# RUN jupyter contrib nbextension install --user
 # RUN jupyter nbextensions_configurator enable --user
 # RUN jupyter contrib nbextension install --system
 # RUN jupyter nbextensions_configurator enable --system
+
+RUN pip install \
+        jupyter_contrib_nbextensions==0.5.0 \
+        jupyter_nbextensions_configurator==0.4.0
+
+USER jupyter
+
+# TRY USING --symlink OPTION FOR contrib nbextension install (which will CREATE LINKS RATHER THAN COPY FILES)
+
+RUN jupyter contrib nbextension install --user
+RUN jupyter nbextensions_configurator enable --user
+# RUN jupyter nbextension enable rubberband/main
+
+ADD FUDDDDD .
+
+USER root
+
+RUN jupyter contrib nbextension install --system
+RUN jupyter nbextensions_configurator enable --user
+
+RUN ls -a /home/jupyter/.local/share/jupyter/
 
 # SSL ---------------------------------------------------------------------------------------------
 
