@@ -70,7 +70,7 @@ RUN pip install \
 
 # CONFIGURATION ----------------------------------------------------------------------------------
 
-ADD jupyterhub_config.py /srv/jupyterhub/
+# ADD jupyterhub_config.py /srv/jupyterhub/
 
 # Location of this file:
 #
@@ -80,7 +80,7 @@ ADD jupyterhub_config.py /srv/jupyterhub/
 # Global location: /etc/jupyter/
 # Local location:  ~/.jupyter/
 #
-ADD jupyter_notebook_config.py /etc/jupyter/
+# ADD jupyter_notebook_config.py /etc/jupyter/
 
 # -------------------------------------------------------------------------------------------------
 
@@ -123,22 +123,12 @@ RUN pip install \
         jupyter_contrib_nbextensions==0.5.0 \
         jupyter_nbextensions_configurator==0.4.0
 
-USER jupyter
+RUN jupyter contrib nbextension install --system
+RUN jupyter nbextensions_configurator enable --system
 
 # TRY USING --symlink OPTION FOR contrib nbextension install (which will CREATE LINKS RATHER THAN COPY FILES)
 
-RUN jupyter contrib nbextension install --user
-RUN jupyter nbextensions_configurator enable --user
-# RUN jupyter nbextension enable rubberband/main
-
-ADD FUDDDDD .
-
-USER root
-
-RUN jupyter contrib nbextension install --system
-RUN jupyter nbextensions_configurator enable --user
-
-RUN ls -a /home/jupyter/.local/share/jupyter/
+RUN jupyter nbextension enable varInspector/main --system
 
 # SSL ---------------------------------------------------------------------------------------------
 

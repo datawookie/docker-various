@@ -202,9 +202,11 @@
 #c.NotebookApp.mathjax_url = ''
 
 ## Dict of Python modules to load as notebook server extensions.Entry values can
-#  be used to enable and disable the loading ofthe extensions. The extensions
+#  be used to enable and disable the loading of the extensions. The extensions
 #  will be loaded in alphabetical order.
-#c.NotebookApp.nbserver_extensions = {}
+c.NotebookApp.nbserver_extensions = {
+    'nbextensions': True,
+}
 
 ## The directory to use for notebooks and kernels.
 #c.NotebookApp.notebook_dir = ''
