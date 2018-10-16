@@ -1,6 +1,7 @@
 .bash_history
 .local/
 .python_history
+.cache
 .Rhistory
 *.swp
 .ipynb_checkpoints/

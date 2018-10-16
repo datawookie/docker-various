@@ -96,39 +96,33 @@ ADD generate-users /usr/local/bin/
 
 # EXTENSIONS --------------------------------------------------------------------------------------
 
-# https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator
 # https://github.com/ipython-contrib/jupyter_contrib_nbextensions
-# https://gist.github.com/vlandeiro/0775ea28b2839dc7c8032b6a76c2dadb
-# https://github.com/ur-whitelab/docker-images/blob/master/python/jupyter-nbextensions/Dockerfile
-#
-# THIS HAS MANUAL INSTALL STEPS FROM jupyterhub image.
-#
-# https://github.com/colin-svds/jupyterhub-nbextensions-docker/blob/master/DockerFile
+# https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator
 
-# RUN jupyter nbextension install --system --symlink --debug
+# To see the "Configurator" menu, from a notebook select Edit -> nbextensions config (last item).
 
-# NbExtensions
+# To see information about installed extensions do:
 #
-# https://github.com/colin-svds/jupyterhub-nbextensions-docker/blob/master/DockerFile
-#
-# RUN jupyter contrib nbextension install --user
-# RUN jupyter contrib nbextension install --symlink --system
-# 
-# RUN pip install jupyter_nbextensions_configurator jupyter_contrib_nbextensions
-# RUN jupyter nbextensions_configurator enable --user
-# RUN jupyter contrib nbextension install --system
-# RUN jupyter nbextensions_configurator enable --system
+# $ jupyter nbextension list
 
 RUN pip install \
         jupyter_contrib_nbextensions==0.5.0 \
-        jupyter_nbextensions_configurator==0.4.0
-
-RUN jupyter contrib nbextension install --system
-RUN jupyter nbextensions_configurator enable --system
-
-# TRY USING --symlink OPTION FOR contrib nbextension install (which will CREATE LINKS RATHER THAN COPY FILES)
-
-RUN jupyter nbextension enable varInspector/main --system
+        jupyter_nbextensions_configurator==0.4.0 && \
+    jupyter contrib nbextension install --system --symlink && \
+    jupyter nbextensions_configurator enable --system && \
+    jupyter nbextension enable varInspector/main --system && \
+    jupyter nbextension enable toc2/main --system && \
+    jupyter nbextension enable spellchecker/main --system && \
+    jupyter nbextension enable rubberband/main --system && \
+    jupyter nbextension enable highlighter/highlighter --system && \
+    jupyter nbextension enable hide_header/main --system && \
+    jupyter nbextension enable freeze/main --system && \
+    jupyter nbextension enable exercise2/main --system && \
+    jupyter nbextension enable exercise/main --system && \
+    jupyter nbextension enable collapsible_headings/main --system && \
+    jupyter nbextension enable codefolding/main --system && \
+    jupyter nbextension enable codefolding/edit --system && \
+    jupyter nbextension enable cell_filter/cell_filter --system
 
 # SSL ---------------------------------------------------------------------------------------------
 
