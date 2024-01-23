@@ -110,19 +110,18 @@ RUN pip install \
         jupyter_nbextensions_configurator==0.4.0 && \
     jupyter contrib nbextension install --system --symlink && \
     jupyter nbextensions_configurator enable --system && \
-    jupyter nbextension enable varInspector/main --system && \
+    # jupyter nbextension enable varInspector/main --system && \
     jupyter nbextension enable toc2/main --system && \
-    jupyter nbextension enable spellchecker/main --system && \
-    jupyter nbextension enable rubberband/main --system && \
-    jupyter nbextension enable highlighter/highlighter --system && \
-    jupyter nbextension enable hide_header/main --system && \
-    jupyter nbextension enable freeze/main --system && \
-    jupyter nbextension enable exercise2/main --system && \
-    jupyter nbextension enable exercise/main --system && \
-    jupyter nbextension enable collapsible_headings/main --system && \
-    jupyter nbextension enable codefolding/main --system && \
-    jupyter nbextension enable codefolding/edit --system && \
-    jupyter nbextension enable cell_filter/cell_filter --system
+    jupyter nbextension enable spellchecker/main --system
+    # jupyter nbextension enable highlighter/highlighter --system && \
+    # jupyter nbextension enable hide_header/main --system && \
+    # jupyter nbextension enable freeze/main --system && \
+    # jupyter nbextension enable exercise2/main --system && \
+    # jupyter nbextension enable exercise/main --system && \
+    # jupyter nbextension enable collapsible_headings/main --system && \
+    # jupyter nbextension enable codefolding/main --system && \
+    # jupyter nbextension enable codefolding/edit --system && \
+    # jupyter nbextension enable cell_filter/cell_filter --system
 
 # SSL ---------------------------------------------------------------------------------------------
 
